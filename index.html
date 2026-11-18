@@ -1,0 +1,790 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Cronograma da Vitória</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: cabeçalho da marca, faixa de números, regras da estratégia, controles e calendário mensal (ou lista); detalhes do post numa gaveta à direita */
+:root{--bg:#F2F4F0;--panel:#FDFDFD;--fg:#1F342B;--muted:#56665C;--line:#DCE3D8;--soft:#F1F4EF;--green:#718A6C;--green-txt:#3E5A44;--purple:#2C4437;--purple-soft:#E3EBE0;--amber-soft:#F7EAD8;--amber-txt:#8A4A12;--red:#B23A30;--red-soft:#F8E4E1;--ink:#1F342B;--chip:#E6ECE3;--shadow:0 12px 40px rgba(31,52,43,.18);--hero:#1F342B;--hero-2:#2C4437;--hero-fg:#FDFDFD;--hero-muted:#C9D6C5;--hero-accent:#A9C0A3;--on-ink:#FDFDFD;
+--c-lideranca:#1F342B;--c-feedback:#718A6C;--c-gestao:#3F6B52;--c-carreira:#9C9A72;--c-planejamento:#C27A3A;
+--font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1A15;--panel:#16251E;--fg:#EDF2EB;--muted:#A6B5A8;--line:#2A3D33;--soft:#1C2E25;--green:#8FAB89;--green-txt:#A9C9A2;--purple:#B9CFB3;--purple-soft:#26392F;--amber-soft:#3A2A17;--amber-txt:#F0B77A;--red:#FF8A7A;--red-soft:#3A1C18;--ink:#2C4437;--chip:#22362C;--shadow:0 12px 40px rgba(0,0,0,.5);--hero:#1F342B;--hero-2:#2C4437;--hero-fg:#FDFDFD;--hero-muted:#C9D6C5;--hero-accent:#A9C0A3;--on-ink:#FDFDFD;--c-lideranca:#CFE0C9;--c-feedback:#8FAB89;--c-gestao:#5E9A76;--c-carreira:#BDBA8E;--c-planejamento:#E39A5A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1A15;--panel:#16251E;--fg:#EDF2EB;--muted:#A6B5A8;--line:#2A3D33;--soft:#1C2E25;--green:#8FAB89;--green-txt:#A9C9A2;--purple:#B9CFB3;--purple-soft:#26392F;--amber-soft:#3A2A17;--amber-txt:#F0B77A;--red:#FF8A7A;--red-soft:#3A1C18;--ink:#2C4437;--chip:#22362C;--shadow:0 12px 40px rgba(0,0,0,.5);--hero:#1F342B;--hero-2:#2C4437;--hero-fg:#FDFDFD;--hero-muted:#C9D6C5;--hero-accent:#A9C0A3;--on-ink:#FDFDFD;--c-lideranca:#CFE0C9;--c-feedback:#8FAB89;--c-gestao:#5E9A76;--c-carreira:#BDBA8E;--c-planejamento:#E39A5A;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+*{box-sizing:border-box}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;padding-block:20px 60px;display:flex;flex-direction:column;gap:22px}
+.top{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:flex-end;justify-content:space-between}
+
+.top{background:linear-gradient(135deg,var(--hero),var(--hero-2));color:var(--hero-fg);border-radius:22px;padding:24px clamp(18px,4vw,34px) 26px;border:1px solid color-mix(in srgb,var(--hero-accent) 25%,transparent)}
+.top .eyebrow{color:var(--hero-accent)}
+.top .eyebrow::before{background:var(--hero-accent)}
+.top .sub{color:var(--hero-muted)}
+.top h1{color:var(--hero-fg)}
+.wordmark{font-weight:800;font-size:clamp(18px,2.4vw,22px);letter-spacing:-.01em;color:var(--hero-fg);display:inline-flex;align-items:center;gap:10px}
+.wordmark .mk{width:30px;height:30px;border-radius:50%;background:var(--hero-accent);color:var(--hero);display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
+.hash{display:inline-block;margin-top:12px;font-weight:800;font-size:13px;color:var(--hero);background:var(--hero-accent);border-radius:999px;padding:4px 12px}
+.eyebrow{display:flex;align-items:center;gap:8px;color:var(--green-txt);font-weight:800;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+h1{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-.02em;margin:4px 0 0;line-height:1.1;text-wrap:balance}
+.sub{color:var(--muted);margin:6px 0 0;font-size:14.5px;max-width:62ch}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,9.5rem),1fr));gap:12px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.stat b{display:block;font-size:30px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.stat.done b{color:var(--green-txt)}
+.guide{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:4px 18px}
+.guide summary{cursor:pointer;font-weight:800;padding:12px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.guide summary::-webkit-details-marker{display:none}
+.guide summary::after{content:"Ver";font-size:13px;color:var(--purple);font-weight:700}
+.guide[open] summary::after{content:"Fechar"}
+.gcols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:18px 28px;padding:4px 0 18px}
+.gcols h3{font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.gcols ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.45}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted);align-items:center}
+.legend i,.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.month{display:flex;align-items:center;gap:8px}
+.month h2{font-size:22px;font-weight:800;margin:0 6px;min-width:9.5em;text-transform:capitalize}
+.ib{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-size:18px;display:inline-flex;align-items:center;justify-content:center}
+.ib:hover:not(:disabled){border-color:var(--fg)}
+.ib:disabled{opacity:.35;cursor:default}
+.btn{border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px}
+.btn:hover{border-color:var(--fg)}
+.btn.primary{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+:root[data-theme="dark"] .btn.primary{background:var(--green);color:#0F1A15;border-color:var(--green)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.primary{background:var(--green);color:#0F1A15;border-color:var(--green)}}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:none;padding:8px 14px;font-weight:700;font-size:14px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filters select{border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:7px 12px;font-size:13.5px;font-weight:600;max-width:100%}
+.toggle{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px}
+.calwrap{overflow-x:auto;border-radius:18px;border:1px solid var(--line);background:var(--panel)}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(122px,1fr));min-width:860px}
+.dow{padding:10px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
+.dow.fds{color:var(--purple)}
+.day{min-height:132px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px;display:flex;flex-direction:column;gap:5px}
+.day:nth-child(7n+7){border-right:0}
+.day.out{background:var(--soft)}
+.day.out>*{opacity:.4}
+.day.fds:not(.out){background:color-mix(in srgb,var(--purple-soft) 45%,transparent)}
+.dn{font-size:13px;font-weight:800;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%}
+.day.today .dn{background:var(--ink);color:var(--on-ink)}
+.fer{font-size:11px;font-weight:800;color:var(--amber-txt);background:var(--amber-soft);border-radius:6px;padding:2px 6px;line-height:1.3}
+.card{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--c,#999);border-radius:10px;padding:6px 7px;font-size:12.5px;line-height:1.3;cursor:pointer;text-align:left;width:100%;display:flex;flex-direction:column;gap:2px}
+.card:hover{border-color:var(--c,#999)}
+.card .t{font-weight:700;overflow-wrap:anywhere}
+.card .m{color:var(--muted);font-weight:600;font-size:11.5px}
+.card.pub .t{text-decoration:line-through;text-decoration-color:var(--green);text-decoration-thickness:2px;color:var(--muted)}
+.card.teste{border-style:dashed;border-left-style:solid}
+.st{font-size:11.5px;font-weight:700;color:var(--muted);background:none;border:1px dashed var(--line);border-radius:8px;padding:3px 6px;text-align:left;cursor:pointer;margin-top:auto}
+.st:hover{border-color:var(--muted);color:var(--fg)}
+.list{display:flex;flex-direction:column;gap:18px}
+.lday h3{font-size:14px;font-weight:800;margin:0 0 8px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.lday h3.today{color:var(--green-txt)}
+.row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--c,#999);border-radius:14px;padding:12px 14px;margin-bottom:8px}
+.row>div{min-width:0}
+.row .t{font-weight:700;overflow-wrap:anywhere}
+.row .h{color:var(--muted);font-size:13.5px;margin-top:3px;overflow-wrap:anywhere}
+.row .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.row.pub .t{text-decoration:line-through;text-decoration-color:var(--green);text-decoration-thickness:2px;color:var(--muted)}
+.row.storyrow{border-left-color:var(--line);border-style:dashed;border-left-style:solid}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--chip);color:var(--fg);white-space:nowrap}
+.tag.s-Publicado{background:color-mix(in srgb,var(--green) 18%,transparent);color:var(--green-txt)}
+.tag.s-Aprovado,.tag.s-Agendado{background:var(--purple-soft);color:var(--purple)}
+.tag.s-Em-produção{background:var(--amber-soft);color:var(--amber-txt)}
+.tag.teste{background:var(--purple-soft);color:var(--purple)}
+.tag.ferT{background:var(--amber-soft);color:var(--amber-txt)}
+.open{border:1.5px solid var(--line);background:none;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px}
+.empty{background:var(--panel);border:1.5px dashed var(--line);border-radius:18px;padding:36px 20px;text-align:center;color:var(--muted)}
+.empty b{display:block;color:var(--fg);font-size:18px;margin-bottom:6px}
+.note{font-size:13px;color:var(--muted);margin:0}
+.scrim{position:fixed;inset:0;background:rgba(15,26,21,.5);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--panel);z-index:21;box-shadow:var(--shadow);display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) 20px;gap:16px;overflow-y:auto}
+.dhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.drawer h2{margin:4px 0 0;font-size:21px;font-weight:800;line-height:1.2;text-wrap:balance}
+.ddate{font-size:13px;font-weight:700;color:var(--muted)}
+.x{flex:none;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-size:18px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.blk{display:flex;flex-direction:column;gap:6px}
+.blk .bh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.blk h3{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0}
+.blk .tx{white-space:pre-wrap;font-size:14.5px;line-height:1.55;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:12px 14px;overflow-wrap:anywhere}
+.blk .tx.hook{font-weight:700;font-size:16px}
+.blk .tx.warn{background:var(--amber-soft);border-color:transparent;color:var(--fg)}
+.copy{border:1.5px solid var(--line);background:none;border-radius:999px;padding:3px 10px;font-weight:700;font-size:12px;color:var(--muted)}
+.copy:hover{color:var(--fg);border-color:var(--fg)}
+.track{display:grid;grid-template-columns:1fr;gap:10px;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.track label{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.track select,.track textarea{border:1.5px solid var(--line);background:var(--panel);border-radius:10px;padding:8px 10px;font-size:14.5px;width:100%}
+.track textarea{min-height:70px;resize:vertical}
+.track .ro{font-size:13px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--on-ink);padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px;z-index:30;box-shadow:var(--shadow)}
+@media (max-width:640px){.month h2{font-size:18px;min-width:0}}
+@media (prefers-reduced-motion:no-preference){.drawer{animation:in .22s cubic-bezier(.2,.8,.2,1)}@keyframes in{from{transform:translateX(24px);opacity:0}}}
+</style>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="wordmark" aria-label="@vitoriadosim"><span class="mk" aria-hidden="true">V</span>@vitoriadosim</div>
+      <div class="eyebrow" style="margin-top:16px">Instagram · Vitória Oliveira</div>
+      <h1>Cronograma da Vitória</h1>
+      <p class="sub">De 18 de novembro de 2026 a 31 de janeiro de 2027: frase toda segunda e carrossel toda quarta sobre liderança, feedback, gestão de pessoas e carreira contábil. Toque em um post para ver o texto da arte, os slides e a legenda.</p>
+      <span class="hash">#osimmudatudo</span>
+    </div>
+  </header>
+
+  <section class="stats" id="stats" aria-label="Resumo do cronograma"></section>
+
+  <details class="guide" id="guide">
+    <summary>Como este cronograma funciona</summary>
+    <div class="gcols">
+      <div>
+        <h3>Ritmo</h3>
+        <ul>
+          <li><b>Segunda:</b> frase em post estático para abrir a semana.</li>
+          <li><b>Quarta:</b> carrossel prático, para salvar e aplicar com o time.</li>
+          <li>21 posts no período: 10 frases e 11 carrosséis.</li>
+          <li>Feriados marcados no calendário: Consciência Negra (20/11), Natal (25/12) e Ano Novo (01/01).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Temas e estações</h3>
+        <ul>
+          <li><b>Pilares:</b> liderança, feedback, gestão de pessoas, carreira contábil e metas e planejamento.</li>
+          <li><b>Fim de dezembro:</b> retrospectiva do ano e planejamento de 2027.</li>
+          <li><b>Janeiro:</b> metas, PDI, contratação, onboarding e a temporada de fechamento, sempre pelo ângulo da liderança.</li>
+          <li>Sem regras técnicas ou fiscais: o assunto é gente e gestão.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Tom e assinatura</h3>
+        <ul>
+          <li><b>Direto e reflexivo:</b> frases curtas, uma ideia por linha, sem enrolação.</li>
+          <li>Toda legenda termina com uma pergunta para o seguidor.</li>
+          <li>Todo post leva <b>#osimmudatudo</b> e mais 2 ou 3 hashtags do tema.</li>
+          <li><b>Visual:</b> verde-escuro, verde-sálvia e branco, fonte Plus Jakarta Sans.</li>
+          <li>Não repetir frases já publicadas no perfil.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="legend" id="legend" style="padding-bottom:16px"></div>
+  </details>
+
+  <div class="controls">
+    <div class="month">
+      <button class="ib" id="prev" aria-label="Mês anterior">‹</button>
+      <h2 id="mtitle">—</h2>
+      <button class="ib" id="next" aria-label="Próximo mês">›</button>
+    </div>
+    <div class="filters">
+      <select id="f-tipo" aria-label="Filtrar por tipo"></select>
+      <select id="f-pilar" aria-label="Filtrar por pilar"></select>
+      <select id="f-status" aria-label="Filtrar por status"></select>
+    </div>
+    <div class="seg" role="group" aria-label="Visualização"><button id="v-cal" aria-pressed="true">Calendário</button><button id="v-list" aria-pressed="false">Lista</button></div>
+  </div>
+
+  <div id="view"></div>
+  <p class="note" id="status-note">Conectando ao status dos posts…</p>
+</div>
+<div id="layer"></div>
+<script>
+const POSTS = [
+// ================= NOVEMBRO =================
+{d:"2026-11-18",tipo:"feed",f:"Carrossel · 6 slides",p:"lideranca",t:"Você lidera ou só chefia?",
+h:"Você lidera ou só chefia?",
+r:`S1 (capa): "Você lidera ou só chefia?" Subtítulo menor: "4 sinais de que o time depende de você, e não do seu exemplo."
+S2: "1. Você sabe o prazo de tudo, mas não sabe o que trava o time."
+S3: "2. Você corrige em público e elogia em particular."
+S4: "3. O time só resolve as coisas quando você está por perto."
+S5: "4. Você cobra resultado sem ter combinado o que era resultado."
+S6 (fecho + CTA): "Liderar é tornar o time capaz sem você." Abaixo: "Qual desses você já viveu?"`,
+l:`Chefe controla prazo.
+Líder entende o que está travando o caminho.
+
+Se você se reconheceu em algum desses sinais, tudo bem. O primeiro passo é perceber.
+
+Qual desses você já viveu, como líder ou como liderado?`,
+tags:"#osimmudatudo #lideranca #gestaodepessoas #lideres",
+pr:"Capa em forma de pergunta que provoca autoavaliação. Sinais curtos e concretos, um por slide, para gerar identificação. Fecho com a frase-tese e CTA que convida a comentar a própria experiência.",
+v:"Já planejado. Conferir a numeração dos slides e a frase final com a Vitória."},
+
+{d:"2026-11-23",tipo:"feed",f:"Frase (post estático)",p:"lideranca",t:"Perguntas certas",
+h:"Liderar não é ter todas as respostas. É fazer as perguntas certas para o seu time.",
+r:`ARTE: fundo verde-escuro (#1f342b), frase em branco, Plus Jakarta Sans em negrito, alinhada à esquerda.
+Destaque em verde-sálvia (#718a6c) para "as perguntas certas".
+Rodapé discreto: @vitoriadosim.`,
+l:`Quem acha que precisa saber tudo vira gargalo.
+Quem pergunta bem faz o time pensar.
+
+"O que você faria?" vale mais do que muita resposta pronta.
+
+Qual pergunta você vai fazer ao seu time essa semana?`,
+tags:"#osimmudatudo #lideranca #gestaodepessoas",
+pr:"Frase de segunda: abre a semana com uma ideia simples e salvável. Legenda curta, com contraste (quem sabe tudo × quem pergunta) e pergunta prática no fim.",
+v:"Já planejado."},
+
+{d:"2026-11-25",tipo:"feed",f:"Carrossel · 8 slides",p:"feedback",t:"A 1:1 de dezembro",
+h:"Fechando o ano com o time: a 1:1 de dezembro",
+r:`S1 (capa): "Fechando o ano com o time: a 1:1 de dezembro." Subtítulo: "4 perguntas que valem mais do que qualquer avaliação formal."
+S2: "Dezembro corre. Mas 30 minutos com cada pessoa do time mudam o jeito que ela começa janeiro."
+S3: "1. Do que você mais se orgulha de ter entregado este ano?"
+S4: "2. O que te travou, e onde eu poderia ter ajudado?"
+S5: "3. O que você quer aprender em 2027?"
+S6: "4. Como você prefere receber feedback?"
+S7: "Anote as respostas. É o seu PDI de janeiro pronto."
+S8 (CTA): "Salve este post para usar nas suas 1:1 de dezembro."`,
+l:`Antes de fechar o ano, abra espaço para ouvir.
+
+Quatro perguntas.
+Trinta minutos por pessoa.
+E janeiro começa com plano, não com achismo.
+
+Você já marcou as 1:1 de dezembro com o seu time?`,
+tags:"#osimmudatudo #feedback #umaum #gestaodepessoas",
+pr:"Conteúdo utilitário e sazonal: o líder salva para usar. A pergunta 2 coloca o líder como parte do problema, o que reforça o tom de responsabilidade. Liga dezembro a janeiro (PDI), preparando o carrossel de 13/01.",
+v:"Já planejado. CTA principal é salvar."},
+
+{d:"2026-11-30",tipo:"feed",f:"Frase (post estático)",p:"gestao",t:"Combinar antes de cobrar",
+h:"Quem não combina expectativa não pode cobrar resultado.",
+r:`ARTE: fundo verde-escuro (#1f342b), frase em branco, negrito.
+Quebra em duas linhas: "Quem não combina expectativa" / "não pode cobrar resultado."
+Rodapé discreto: @vitoriadosim.`,
+l:`Cobrança sem combinado é injusta.
+Para quem cobra e para quem é cobrado.
+
+Prazo, padrão de qualidade, prioridade: se não foi dito, não foi combinado.
+
+O seu time sabe exatamente o que você espera dele?`,
+tags:"#osimmudatudo #gestaodepessoas #lideranca",
+pr:"Frase curta e afirmativa, fácil de compartilhar. Conversa com o 4º sinal do carrossel de 18/11 e reforça a ideia de clareza antes de cobrança.",
+v:"Já planejado."},
+
+// ================= DEZEMBRO =================
+{d:"2026-12-02",tipo:"feed",f:"Carrossel · 7 slides",p:"feedback",t:"Feedback sem sermão",
+h:"Feedback em 4 passos (sem virar sermão)",
+r:`S1 (capa): "Feedback em 4 passos (sem virar sermão)."
+S2: "Feedback não é desabafo. É uma conversa para a pessoa sair sabendo o que fazer."
+S3: "1. O fato. O que aconteceu, sem adjetivo. 'O relatório chegou sem a conciliação' é diferente de 'você foi descuidado'."
+S4: "2. O impacto. O que isso causou no time, no cliente ou no prazo."
+S5: "3. A pergunta. 'O que aconteceu do seu lado?' Escute antes de concluir."
+S6: "4. O combinado. O que muda a partir de agora, e quando vocês voltam a conversar."
+S7 (CTA): "Fato, impacto, pergunta, combinado. Salve para a próxima conversa difícil."`,
+l:`Sermão a pessoa escuta.
+Feedback a pessoa usa.
+
+A diferença está na estrutura: fato, impacto, pergunta e combinado.
+
+Qual desses passos você costuma pular?`,
+tags:"#osimmudatudo #feedback #comunicacao #lideranca",
+pr:"Método simples em passos numerados, com um exemplo do dia a dia do escritório no slide 3. CTA de salvamento e pergunta que gera autoavaliação.",
+v:"Exemplo do slide 3 é genérico de rotina, sem afirmação técnica."},
+
+{d:"2026-12-07",tipo:"feed",f:"Frase (post estático)",p:"feedback",t:"Elogio que ensina",
+h:"Elogio genérico não ensina nada. Diga o que a pessoa fez bem, para ela poder repetir.",
+r:`ARTE: fundo branco (#fdfdfd), frase em verde-escuro (#1f342b), negrito.
+Faixa fina em verde-sálvia (#718a6c) acima da frase.
+Rodapé discreto: @vitoriadosim.`,
+l:`"Mandou bem" é simpático.
+Mas não diz o que repetir.
+
+"A forma como você explicou o prazo para o cliente evitou retrabalho." Isso sim é elogio que ensina.
+
+Qual foi o último elogio específico que você deu ao seu time?`,
+tags:"#osimmudatudo #feedback #reconhecimento",
+pr:"Mostra que feedback também é positivo. Exemplo concreto na legenda transforma a frase em prática imediata.",
+v:"Variação de arte (fundo claro) para quebrar a sequência visual do feed."},
+
+{d:"2026-12-09",tipo:"feed",f:"Carrossel · 7 slides",p:"lideranca",t:"Frases para aposentar",
+h:"5 frases que travam o seu time (e o que dizer no lugar)",
+r:`S1 (capa): "5 frases que travam o seu time. E o que dizer no lugar."
+S2: "'Sempre foi assim.' → 'Como a gente pode fazer melhor?'"
+S3: "'Não me traga problema, me traga solução.' → 'Me conta o problema. Vamos pensar juntos.'"
+S4: "'Isso é básico.' → 'Em que parte você travou?'"
+S5: "'Faz do jeito que eu falei.' → 'O resultado esperado é este. Como você chegaria lá?'"
+S6: "'Depois a gente conversa.' → 'Que horário hoje funciona para a gente conversar?'"
+S7 (CTA): "Palavra de líder pesa. Qual dessas você vai aposentar primeiro?"`,
+l:`Tem frase que parece inofensiva.
+Mas ensina o time a se calar.
+
+Trocar a frase não é frescura. É mudar o recado que você passa todos os dias.
+
+Qual dessas você já ouviu de um chefe? E qual você já disse?`,
+tags:"#osimmudatudo #lideranca #comunicacao #gestaodepessoas",
+pr:"Formato antes/depois, muito salvável e compartilhável. Pergunta dupla no fim (ouviu × disse) aumenta comentários e mantém o tom de autorresponsabilidade.",
+v:"—"},
+
+{d:"2026-12-14",tipo:"feed",f:"Frase (post estático)",p:"carreira",t:"Do técnico ao líder",
+h:"Ser o melhor técnico da equipe te trouxe até a liderança. Não é isso que vai te manter nela.",
+r:`ARTE: fundo verde-escuro (#1f342b), frase em branco, negrito.
+Segunda frase em verde-sálvia (#718a6c) para criar a virada.
+Rodapé discreto: @vitoriadosim.`,
+l:`Na contabilidade, é comum o melhor analista virar coordenador.
+E de repente o trabalho não é mais fazer. É fazer acontecer.
+
+Técnica abre a porta. Gente é o que sustenta a cadeira.
+
+O que mais mudou na sua rotina quando você passou a liderar?`,
+tags:"#osimmudatudo #carreiracontabil #lideranca",
+pr:"Fala direto com o público central (contadores promovidos a gestores). Contraste técnico × líder em duas frases curtas.",
+v:"—"},
+
+{d:"2026-12-16",tipo:"feed",f:"Carrossel · 7 slides",p:"carreira",t:"Quem cresce na contabilidade",
+h:"Carreira contábil: o que separa quem cresce de quem estaciona",
+r:`S1 (capa): "Carreira contábil: o que separa quem cresce de quem estaciona."
+S2: "Não é só certificação. Conhecimento técnico é o ponto de partida, não o diferencial."
+S3: "1. Sabe explicar o número. Cliente e gestor querem entender o que o resultado significa, em linguagem simples."
+S4: "2. Entende o negócio do cliente. Quem conhece a operação faz perguntas melhores."
+S5: "3. Pede feedback antes de ser avaliado. Não espera o fim do ano para saber como está indo."
+S6: "4. Ensina quem está chegando. Quem forma outras pessoas mostra que está pronto para liderar."
+S7 (CTA): "Qual dessas você quer desenvolver em 2027? Conta aqui."`,
+l:`Na contabilidade, técnica é o mínimo.
+Crescer depende do que vem junto.
+
+Comunicação, visão de negócio, abertura a feedback e vontade de ensinar.
+
+Qual dessas habilidades você quer desenvolver em 2027?`,
+tags:"#osimmudatudo #carreiracontabil #contabilidade #desenvolvimento",
+pr:"Conteúdo de carreira com a autoridade de quem recruta para a área. Lista de comportamentos (não de regras técnicas). Pergunta já puxa o tema de planejamento de 2027.",
+v:"Sem afirmações técnicas ou de mercado com números. Se quiser citar dado de recrutamento da Connectabil, validar a fonte antes."},
+
+{d:"2026-12-21",tipo:"feed",f:"Frase (post estático)",p:"lideranca",t:"Agradecer antes de planejar",
+h:"Antes de planejar 2027, agradeça a quem fez 2026 acontecer.",
+r:`ARTE: fundo verde-escuro (#1f342b), frase em branco, negrito.
+"2026" e "2027" em verde-sálvia (#718a6c).
+Rodapé discreto: @vitoriadosim.`,
+l:`Fim de ano tem planilha, meta e orçamento.
+Mas também precisa ter obrigado.
+
+Um agradecimento específico, olho no olho, vale mais do que qualquer mensagem no grupo.
+
+Quem do seu time merece ouvir um obrigado seu esta semana?`,
+tags:"#osimmudatudo #lideranca #reconhecimento #retrospectiva",
+pr:"Abre a semana do Natal com tom de reconhecimento. Ponte entre a retrospectiva (23/12) e o planejamento (28/12 e 30/12).",
+v:"Semana de Natal: conferir se a publicação fica agendada."},
+
+{d:"2026-12-23",tipo:"feed",f:"Carrossel · 7 slides",p:"planejamento",t:"Retrospectiva do líder",
+h:"Retrospectiva do líder: 5 perguntas para fazer a si mesmo antes de 2027",
+r:`S1 (capa): "Retrospectiva do líder: 5 perguntas para fazer a si mesmo antes de 2027."
+S2: "1. Quem do meu time cresceu este ano? E quanto disso teve a ver comigo?"
+S3: "2. Que conversa eu adiei e não deveria ter adiado?"
+S4: "3. Em que momento eu fui gargalo?"
+S5: "4. Que decisão eu tomaria diferente hoje?"
+S6: "5. O que o meu time diria sobre mim, se pudesse falar com sinceridade?"
+S7 (CTA): "Separe 20 minutos, papel e caneta. Salve para responder com calma nos próximos dias."`,
+l:`Todo fim de ano a gente avalia o time.
+Poucos líderes avaliam a si mesmos.
+
+Cinco perguntas. Respostas honestas. Só você vai ler.
+
+Qual delas é a mais difícil de responder?`,
+tags:"#osimmudatudo #retrospectiva #lideranca #autoconhecimento",
+pr:"Sazonal (véspera de Natal, ritmo mais lento, tempo para refletir). Perguntas desconfortáveis no tom direto da Vitória. CTA de salvamento.",
+v:"Evitar a frase já usada sobre feedback adiado: o slide 3 fala de conversa adiada com outra construção. Conferir."},
+
+{d:"2026-12-28",tipo:"feed",f:"Frase (post estático)",p:"planejamento",t:"Meta que só o líder conhece",
+h:"Meta que só o líder conhece não é meta. É desejo.",
+r:`ARTE: fundo branco (#fdfdfd), frase em verde-escuro (#1f342b), negrito.
+"É desejo." em verde-sálvia (#718a6c), em linha separada.
+Rodapé discreto: @vitoriadosim.`,
+l:`O planejamento de 2027 está pronto?
+Ótimo. Agora falta o time saber dele.
+
+Meta guardada na cabeça do gestor não move ninguém.
+
+Quando você vai apresentar as metas de 2027 para o seu time?`,
+tags:"#osimmudatudo #metas #planejamento2027 #gestaodepessoas",
+pr:"Semana entre Natal e Ano Novo: público pensando em planejamento. Frase curta com virada no final.",
+v:"—"},
+
+{d:"2026-12-30",tipo:"feed",f:"Carrossel · 7 slides",p:"planejamento",t:"Planejar 2027 com o time",
+h:"Como planejar 2027 com o time (e não para o time)",
+r:`S1 (capa): "Como planejar 2027 com o time, e não para o time."
+S2: "Plano feito sozinho vira tarefa. Plano feito junto vira compromisso."
+S3: "1. Comece pelo que funcionou. Pergunte: o que a gente deve continuar fazendo?"
+S4: "2. Depois, o que parar. O que consumiu energia e não trouxe resultado?"
+S5: "3. Escolha poucas prioridades. Três bem feitas valem mais do que dez pela metade."
+S6: "4. Cada prioridade com um dono e uma data de revisão."
+S7 (CTA): "Salve para a primeira reunião de janeiro. E me conta: o seu time participa do planejamento?"`,
+l:`Ninguém se compromete com o que não ajudou a construir.
+
+Continuar, parar, priorizar e dar dono.
+Uma reunião, e o time entra em janeiro sabendo para onde vai.
+
+O seu time participa do planejamento ou só recebe o plano pronto?`,
+tags:"#osimmudatudo #planejamento2027 #gestaodepessoas #lideranca",
+pr:"Última quarta do ano: utilitário para a primeira reunião de janeiro. Contraste 'com o time × para o time' na capa.",
+v:"—"},
+
+// ================= JANEIRO =================
+{d:"2027-01-04",tipo:"feed",f:"Frase (post estático)",p:"gestao",t:"Prioridade clara",
+h:"Janeiro não precisa de discurso motivacional. Precisa de prioridade clara.",
+r:`ARTE: fundo verde-escuro (#1f342b), frase em branco, negrito.
+"prioridade clara" em verde-sálvia (#718a6c).
+Rodapé discreto: @vitoriadosim.`,
+l:`Primeira segunda do ano.
+O time não precisa de frase de efeito. Precisa saber o que vem primeiro.
+
+Diga as três prioridades do mês. E o que pode esperar.
+
+O seu time sabe hoje qual é a prioridade número 1 de janeiro?`,
+tags:"#osimmudatudo #gestaodepessoas #prioridades #metas",
+pr:"Primeira segunda de 2027: tema de volta ao trabalho, sem clichê de ano novo. Ação concreta na legenda (três prioridades).",
+v:"—"},
+
+{d:"2027-01-06",tipo:"feed",f:"Carrossel · 7 slides",p:"gestao",t:"Metas para cada pessoa",
+h:"Metas de 2027: como transformar a meta da área em meta de cada pessoa",
+r:`S1 (capa): "Metas de 2027: como transformar a meta da área em meta de cada pessoa."
+S2: "A meta da área é clara para você. Para quem executa, ela costuma ser abstrata."
+S3: "1. Traduza. O que essa meta significa no dia a dia de cada função?"
+S4: "2. Combine o 'como', não só o 'quanto'. Número sem caminho gera ansiedade."
+S5: "3. Escreva junto. A pessoa precisa conseguir explicar a própria meta com as palavras dela."
+S6: "4. Marque o primeiro checkpoint já agora. Fevereiro, não dezembro."
+S7 (CTA): "Meta boa cabe em uma frase. A de cada pessoa do seu time cabe? Conta aqui."`,
+l:`Meta da empresa no slide não muda o comportamento de ninguém.
+O que muda é cada pessoa saber qual é a parte dela.
+
+Traduza, combine o caminho, escreva junto e marque o primeiro checkpoint.
+
+Cada pessoa do seu time consegue explicar a própria meta em uma frase?`,
+tags:"#osimmudatudo #metas #gestaodepessoas #lideranca",
+pr:"Sequência natural do planejamento (30/12). Passo a passo prático, com CTA que testa a clareza da meta.",
+v:"—"},
+
+{d:"2027-01-11",tipo:"feed",f:"Frase (post estático)",p:"gestao",t:"Contratar no aperto",
+h:"Contratar rápido para resolver o aperto costuma criar um aperto maior.",
+r:`ARTE: fundo verde-escuro (#1f342b), frase em branco, negrito.
+"um aperto maior" em verde-sálvia (#718a6c).
+Rodapé discreto: @vitoriadosim.`,
+l:`Janeiro chega, a demanda aperta e a vaga precisa ser preenchida para ontem.
+Mas contratação errada custa tempo, energia e o clima do time.
+
+Defina o perfil antes de abrir a vaga. Mesmo com pressa.
+
+Você já contratou na pressa e se arrependeu?`,
+tags:"#osimmudatudo #recrutamento #contratacao #gestaodepessoas",
+pr:"Tema de contratação, território natural da Connectabil, mas sem venda direta. Pergunta de experiência pessoal gera comentários.",
+v:"Sem menção comercial à Connectabil neste post. Se quiser incluir, combinar com o time de marketing."},
+
+{d:"2027-01-13",tipo:"feed",f:"Carrossel · 7 slides",p:"carreira",t:"PDI que sai do papel",
+h:"PDI que sai do papel: como montar em 30 minutos",
+r:`S1 (capa): "PDI que sai do papel: como montar em 30 minutos."
+S2: "Lembra das respostas da 1:1 de dezembro? Elas são o ponto de partida."
+S3: "1. Um objetivo só. 'Assumir a carteira de clientes de médio porte' é melhor do que 'crescer'."
+S4: "2. Duas ou três competências para desenvolver até lá."
+S5: "3. Uma ação prática por competência: projeto, curso, mentoria ou acompanhar alguém."
+S6: "4. Data de revisão marcada na agenda. PDI sem revisão vira arquivo."
+S7 (CTA): "Salve e monte o PDI com cada pessoa do time ainda em janeiro."`,
+l:`PDI não é formulário de RH.
+É um combinado sobre o próximo passo de alguém.
+
+Um objetivo, poucas competências, ações práticas e data para revisar.
+
+O seu time tem PDI ou só tem avaliação no fim do ano?`,
+tags:"#osimmudatudo #pdi #desenvolvimento #carreiracontabil",
+pr:"Fecha o ciclo aberto em 25/11 (1:1 de dezembro → PDI de janeiro). Exemplo de objetivo do universo contábil, sem regra técnica.",
+v:"Referência explícita ao carrossel de 25/11: manter a mesma identidade visual para o seguidor reconhecer a série."},
+
+{d:"2027-01-18",tipo:"feed",f:"Frase (post estático)",p:"lideranca",t:"O primeiro mês de quem chega",
+h:"O primeiro mês de quem chega diz mais sobre a sua liderança do que sobre o novo contratado.",
+r:`ARTE: fundo branco (#fdfdfd), frase em verde-escuro (#1f342b), negrito.
+"sobre a sua liderança" em verde-sálvia (#718a6c).
+Rodapé discreto: @vitoriadosim.`,
+l:`Contratou em janeiro?
+Agora começa a parte que é sua.
+
+Quem chega sem roteiro, sem acesso e sem referência não fracassa sozinho.
+
+Como foi o seu primeiro mês no último emprego?`,
+tags:"#osimmudatudo #onboarding #lideranca #gestaodepessoas",
+pr:"Puxa o tema de onboarding da quarta (20/01). Coloca a responsabilidade no líder, no tom direto da Vitória.",
+v:"—"},
+
+{d:"2027-01-20",tipo:"feed",f:"Carrossel · 8 slides",p:"gestao",t:"Os primeiros 30 dias",
+h:"Contratou em janeiro? O roteiro dos primeiros 30 dias",
+r:`S1 (capa): "Contratou em janeiro? O roteiro dos primeiros 30 dias."
+S2: "Antes do 1º dia: acessos, equipamento e agenda da primeira semana prontos. Ninguém merece passar a manhã esperando senha."
+S3: "Dia 1: você recebe. Não o RH sozinho, não o colega mais disponível. Você."
+S4: "Semana 1: apresente as pessoas, os clientes e como o time trabalha. Indique um padrinho ou madrinha para as dúvidas do dia a dia."
+S5: "Semana 2: primeiras entregas pequenas, com acompanhamento de perto."
+S6: "Semana 3: primeira conversa de feedback. O que está claro? O que ainda está confuso?"
+S7: "Dia 30: combinado do que se espera nos próximos 60 dias."
+S8 (CTA): "Salve e compartilhe com quem está recebendo gente nova no time."`,
+l:`Contratar dá trabalho.
+Perder alguém nos primeiros meses dá mais ainda.
+
+Os primeiros 30 dias definem se a pessoa fica e se ela entrega.
+
+Qual etapa desse roteiro falta no seu time hoje?`,
+tags:"#osimmudatudo #onboarding #contratacao #gestaodepessoas",
+pr:"Utilitário de alto salvamento para gestores que contrataram no início do ano. Linha do tempo clara e uma ação por slide.",
+v:"Sem números de turnover ou estatísticas. Se for usar algum dado, validar a fonte."},
+
+{d:"2027-01-25",tipo:"feed",f:"Frase (post estático)",p:"carreira",t:"Quem estava junto",
+h:"Na fase mais puxada do ano, o time não lembra da cobrança. Lembra de quem estava junto.",
+r:`ARTE: fundo verde-escuro (#1f342b), frase em branco, negrito.
+"quem estava junto" em verde-sálvia (#718a6c).
+Rodapé discreto: @vitoriadosim.`,
+l:`Começo de ano na contabilidade é fechamento, prazo e escritório cheio.
+É aí que a liderança aparece de verdade.
+
+Presença não é ficar até tarde por obrigação. É estar disponível quando o time trava.
+
+Quem foi o líder que esteve junto com você numa fase difícil?`,
+tags:"#osimmudatudo #contabilidade #lideranca #carreiracontabil",
+pr:"Fala com a realidade sazonal do público contábil sem entrar em regras técnicas. Pergunta afetiva gera histórias nos comentários.",
+v:"Sem citar obrigações ou prazos específicos (post de liderança, não técnico)."},
+
+{d:"2027-01-27",tipo:"feed",f:"Carrossel · 7 slides",p:"lideranca",t:"Liderar no pico de trabalho",
+h:"Temporada de fechamento: como liderar o time no pico de trabalho",
+r:`S1 (capa): "Temporada de fechamento: como liderar o time no pico de trabalho."
+S2: "Pico de demanda testa processo. Mas testa ainda mais a liderança."
+S3: "1. Priorize em voz alta. Diga o que é urgente e, principalmente, o que pode esperar."
+S4: "2. Antecipe. Avise o time sobre a semana mais pesada antes de ela chegar."
+S5: "3. Proteja o foco. Segure reuniões e pedidos que podem ficar para depois."
+S6: "4. Reconheça no meio do caminho, não só no final."
+S7 (CTA): "Depois do pico, faça a retrospectiva com o time. E me conta: qual é o maior desafio do seu time nessa época?"`,
+l:`A temporada mais puxada não é hora de sumir na sua própria pilha.
+É hora de abrir caminho para o time.
+
+Priorizar, antecipar, proteger o foco e reconhecer.
+
+Qual é o maior desafio do seu time na temporada de fechamento?`,
+tags:"#osimmudatudo #lideranca #contabilidade #gestaodepessoas",
+pr:"Fecha janeiro com o momento real do público contábil, sempre pelo ângulo de liderança. Passos de comportamento, sem conteúdo técnico ou fiscal.",
+v:"Conteúdo de liderança, sem afirmações fiscais. Pela regra de revisão de conteúdo técnico, se algo técnico for acrescentado, revisar antes."}
+];
+</script>
+<script>
+(() => {
+    const PILARES = {lideranca:"Liderança", feedback:"Feedback e conversas", gestao:"Gestão de pessoas", carreira:"Carreira contábil e desenvolvimento", planejamento:"Metas e planejamento"};
+  const STATUS = ["Planejado","Em produção","Aprovado","Agendado","Publicado"];
+  const DOW = ["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
+  const MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  const START = "2026-11-18", END = "2027-01-31";
+  const MONTHS = [[2026,10],[2026,11],[2027,0]];
+  const $ = (s) => document.querySelector(s);
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const pad = (n) => String(n).padStart(2, "0");
+  const iso = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const parse = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+  const hoje = iso(new Date());
+  const cor = (p) => `var(--c-${p})`;
+  const fmtDia = (s) => { const dt = parse(s); return `${["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"][dt.getDay()]}, ${dt.getDate()} de ${MESES[dt.getMonth()]}`; };
+
+  const byDate = {};
+  POSTS.forEach((p) => { byDate[p.d] = p; });
+  const FER = {};
+  POSTS.forEach((p) => { if (p.fer) FER[p.d] = p.fer; });
+  Object.assign(FER, {"2026-11-20":"Consciência Negra (feriado)","2026-12-25":"Natal","2027-01-01":"Ano Novo"});
+
+
+  let state = {};
+  let db = null, podeEditar = false, conectado = false;
+  let mi = 0;
+  const hojeYM = hoje.slice(0, 7);
+  MONTHS.forEach(([y, m], i) => { if (`${y}-${pad(m + 1)}` === hojeYM) mi = i; });
+  if (hoje > END) mi = 2;
+  let vista = "cal";
+  try { const v = localStorage.getItem("vitoria-vista"); if (v === "cal" || v === "list") vista = v; else if (window.innerWidth < 700) vista = "list"; } catch (e) { if (window.innerWidth < 700) vista = "list"; }
+  const filtros = { tipo: "", pilar: "", status: "" };
+
+  const statusOf = (p) => (state[p.d] && state[p.d].status) || "Planejado";
+
+  function fill(sel, label, opts) { sel.replaceChildren(new Option(label, ""), ...opts.map(([v, t]) => new Option(t, v))); }
+  fill($("#f-tipo"), "Frases e carrosséis", [["frase", "Só frases (segunda)"], ["carrossel", "Só carrosséis (quarta)"]]);
+  fill($("#f-pilar"), "Todos os pilares", Object.entries(PILARES));
+  fill($("#f-status"), "Todos os status", STATUS.map((s) => [s, s]));
+  $("#f-tipo").addEventListener("change", (e) => { filtros.tipo = e.target.value; render(); });
+  $("#f-pilar").addEventListener("change", (e) => { filtros.pilar = e.target.value; render(); });
+  $("#f-status").addEventListener("change", (e) => { filtros.status = e.target.value; render(); });
+
+  const leg = $("#legend");
+  Object.entries(PILARES).forEach(([k, n]) => { const s = el("span"); const i = el("i"); i.style.background = cor(k); s.append(i, n); leg.append(s); });
+
+  const fmt = (p) => p.f.startsWith("Carrossel") ? "carrossel" : "frase";
+  const passa = (p) => (!filtros.tipo || fmt(p) === filtros.tipo) && (!filtros.pilar || p.p === filtros.pilar) && (!filtros.status || statusOf(p) === filtros.status);
+
+  function renderStats() {
+    const frases = POSTS.filter((p) => fmt(p) === "frase").length;
+    const carros = POSTS.filter((p) => fmt(p) === "carrossel").length;
+    const semanas = Math.ceil((Math.round((parse(END) - parse(START)) / 864e5) + 1) / 7);
+    const datas = Object.keys(FER).length;
+    const pub = POSTS.filter((p) => statusOf(p) === "Publicado").length;
+    const s = (n, label, cls) => { const d = el("div", "stat " + (cls || "")); d.append(el("b", null, String(n)), el("span", null, label)); return d; };
+    $("#stats").replaceChildren(s(frases, "frases (segunda)"), s(carros, "carrosséis (quarta)"), s(semanas, "semanas de cronograma"), s(datas, "feriados marcados"), ...(conectado ? [s(`${pub}/${POSTS.length}`, "posts publicados", "done")] : []));
+  }
+
+  function card(p) {
+    const c = el("button", "card" + (statusOf(p) === "Publicado" ? " pub" : "") + (p.tipo === "teste" ? " teste" : ""));
+    c.style.setProperty("--c", cor(p.p));
+    c.append(el("span", "t", p.t), el("span", "m", [p.tipo === "teste" ? "Teste fds" : null, p.f.split(" ·")[0].split(" ")[0], statusOf(p)].filter(Boolean).join(" · ")));
+    c.setAttribute("aria-label", `${p.t}, ${p.f}, ${statusOf(p)}. Abrir detalhes`);
+    c.addEventListener("click", () => abrir(p.d));
+    return c;
+  }
+
+  function renderCal() {
+    const [y, m] = MONTHS[mi];
+    const first = new Date(y, m, 1);
+    const offset = (first.getDay() + 6) % 7;
+    const last = new Date(y, m + 1, 0);
+    const cells = Math.ceil((offset + last.getDate()) / 7) * 7;
+    const grid = el("div", "cal");
+    DOW.forEach((d, i) => grid.append(el("div", "dow" + (i > 4 ? " fds" : ""), d)));
+    for (let i = 0; i < cells; i++) {
+      const dt = new Date(y, m, 1 - offset + i);
+      const k = iso(dt);
+      const dentro = k >= START && k <= END;
+      const out = dt.getMonth() !== m;
+      const day = el("div", "day" + (out ? " out" : "") + (k === hoje ? " today" : "") + (i % 7 > 4 ? " fds" : ""));
+      day.append(el("span", "dn", String(dt.getDate())));
+      if (!out && dentro) {
+        if (FER[k]) day.append(el("span", "fer", FER[k]));
+        const p = byDate[k];
+        if (p && passa(p)) day.append(card(p));
+      }
+      grid.append(day);
+    }
+    const w = el("div", "calwrap"); w.append(grid); return w;
+  }
+
+  function renderList() {
+    const [y, m] = MONTHS[mi];
+    const box = el("div", "list");
+    const last = new Date(y, m + 1, 0).getDate();
+    for (let d = 1; d <= last; d++) {
+      const k = `${y}-${pad(m + 1)}-${pad(d)}`;
+      if (k < START || k > END) continue;
+      const p = byDate[k];
+      const showP = p && passa(p);
+      if (!showP && !(FER[k] && !filtros.tipo && !filtros.pilar && !filtros.status)) continue;
+      const g = el("div", "lday");
+      const h = el("h3", k === hoje ? "today" : "", (k === hoje ? "Hoje · " : "") + fmtDia(k));
+      if (FER[k]) h.append(el("span", "tag ferT", FER[k]));
+      g.append(h);
+      if (showP) {
+        const r = el("div", "row" + (statusOf(p) === "Publicado" ? " pub" : ""));
+        r.style.setProperty("--c", cor(p.p));
+        const mid = el("div");
+        mid.append(el("div", "t", p.t), el("div", "h", p.h));
+        const meta = el("div", "meta");
+        if (p.tipo === "teste") meta.append(el("span", "tag teste", "Teste de fim de semana"));
+        meta.append(el("span", "tag", p.f), el("span", "tag", PILARES[p.p]), el("span", "tag s-" + statusOf(p).replace(/\s/g, "-"), statusOf(p)));
+        mid.append(meta);
+        const b = el("button", "open", "Abrir"); b.addEventListener("click", () => abrir(k));
+        r.append(mid, b); g.append(r);
+      }
+      box.append(g);
+    }
+    if (!box.children.length) { const e = el("div", "empty"); e.append(el("b", null, "Nada neste mês com esses filtros"), el("span", null, "Troque o mês ou limpe os filtros.")); return e; }
+    return box;
+  }
+
+  function render() {
+    const [y, m] = MONTHS[mi];
+    $("#mtitle").textContent = `${MESES[m]} ${y}`;
+    $("#prev").disabled = mi === 0; $("#next").disabled = mi === MONTHS.length - 1;
+    $("#v-cal").setAttribute("aria-pressed", String(vista === "cal"));
+    $("#v-list").setAttribute("aria-pressed", String(vista === "list"));
+    renderStats();
+    $("#view").replaceChildren(vista === "cal" ? renderCal() : renderList());
+  }
+  $("#prev").addEventListener("click", () => { if (mi > 0) { mi--; render(); } });
+  $("#next").addEventListener("click", () => { if (mi < MONTHS.length - 1) { mi++; render(); } });
+  const setVista = (v) => { vista = v; try { localStorage.setItem("vitoria-vista", v); } catch (e) {} render(); };
+  $("#v-cal").addEventListener("click", () => setVista("cal"));
+  $("#v-list").addEventListener("click", () => setVista("list"));
+
+  function toast(msg) { const t = el("div", "toast", msg); document.body.append(t); setTimeout(() => t.remove(), 2400); }
+
+  async function copiar(txt, tx) {
+    try { await navigator.clipboard.writeText(txt); toast("Copiado"); }
+    catch (e) { const r = document.createRange(); r.selectNodeContents(tx); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast("Texto selecionado: use Ctrl+C"); }
+  }
+  function bloco(titulo, texto, opts = {}) {
+    const b = el("div", "blk");
+    const bh = el("div", "bh"); bh.append(el("h3", null, titulo));
+    const tx = el("div", "tx" + (opts.cls ? " " + opts.cls : ""), texto);
+    if (opts.copy) { const c = el("button", "copy", "Copiar"); c.addEventListener("click", () => copiar(texto, tx)); bh.append(c); }
+    b.append(bh, tx); return b;
+  }
+
+  async function salvar(k, dados) {
+    if (!db) return false;
+    try { await db.collection("posts").doc(k).set({ ...dados, atualizado_em: new Date().toISOString() }); return true; }
+    catch (e) { if (e && e.code === "invalid_argument") { podeEditar = false; toast("Você só pode visualizar este cronograma"); } else toast("Não foi possível salvar. Tente de novo."); return false; }
+  }
+
+  function abrir(k) {
+    const p = byDate[k];
+    const layer = $("#layer");
+    const scrim = el("div", "scrim");
+    const d = el("div", "drawer"); d.setAttribute("role", "dialog"); d.setAttribute("aria-modal", "true");
+    const fechar = () => { layer.replaceChildren(); document.removeEventListener("keydown", esc); };
+    const esc = (e) => { if (e.key === "Escape") fechar(); };
+    document.addEventListener("keydown", esc);
+    scrim.addEventListener("click", fechar);
+    const head = el("div", "dhead"); const hl = el("div");
+    hl.append(el("div", "ddate", fmtDia(k) + (FER[k] ? " · " + FER[k] : "")));
+    hl.append(el("h2", null, p ? p.t : "Sem post neste dia"));
+    d.setAttribute("aria-label", p ? p.t : "Sem post neste dia");
+    const x = el("button", "x", "×"); x.setAttribute("aria-label", "Fechar"); x.addEventListener("click", fechar);
+    head.append(hl, x); d.append(head);
+    if (p) {
+      const tags = el("div", "tags");
+      if (p.tipo === "teste") tags.append(el("span", "tag teste", "Teste de fim de semana"));
+      const pt = el("span", "tag"); const dot = el("i", "dot"); dot.style.background = cor(p.p); pt.append(dot, PILARES[p.p]);
+      tags.append(el("span", "tag", p.f), pt);
+      d.append(tags);
+      const tr = el("div", "track");
+      const st = state[k] || {};
+      if (conectado) {
+        const ls = el("label", null, "Status"); ls.htmlFor = "st-sel";
+        const sel = el("select"); sel.id = "st-sel"; STATUS.forEach((s) => sel.append(new Option(s, s))); sel.value = st.status || "Planejado"; sel.disabled = !podeEditar;
+        const lo = el("label", null, "Observações do time"); lo.htmlFor = "st-obs";
+        const obs = el("textarea"); obs.id = "st-obs"; obs.value = st.obs || ""; obs.placeholder = "Link do post, ajustes pedidos, quem aprovou…"; obs.disabled = !podeEditar;
+        tr.append(ls, sel, lo, obs);
+        if (podeEditar) {
+          const ok = el("button", "btn primary", "Salvar status"); ok.style.justifySelf = "start";
+          ok.addEventListener("click", async () => { ok.disabled = true; const r = await salvar(k, { status: sel.value, obs: obs.value.trim() }); ok.disabled = false; if (r) toast(sel.value === "Publicado" ? "Marcado como publicado" : "Status salvo"); });
+          tr.append(ok);
+        } else tr.append(el("div", "ro", "Você está só visualizando: para mudar o status, peça acesso de edição a quem compartilhou."));
+        d.append(tr);
+      }
+      d.append(bloco(fmt(p) === "frase" ? "Frase" : "Gancho da capa", p.h, { cls: "hook", copy: true }));
+      d.append(bloco(fmt(p) === "carrossel" ? "Slides" : "Arte", p.r, { copy: true }));
+      const leg = p.l + (p.tags ? "\n\n" + p.tags : "");
+      d.append(bloco("Legenda", leg, { copy: true }));
+      d.append(bloco("Por que este post", p.pr));
+      if (p.v && p.v !== "—") d.append(bloco("Validar antes de publicar", p.v, { cls: "warn" }));
+    }
+    layer.replaceChildren(scrim, d);
+    x.focus();
+  }
+
+  render();
+
+  (async () => {
+    const c = window.claude;
+    const note = $("#status-note");
+    if (!c || !c.use) { note.hidden = true; return; }
+    const [dbNs, user] = await Promise.all([c.use("db"), c.use("user")]);
+    db = dbNs;
+    if (!db) { note.textContent = "Entre na sua conta do Claude para acompanhar o status dos posts."; return; }
+    podeEditar = true;
+    if (user) { try { const w = await user.can("data.write"); if (w === false) podeEditar = false; } catch (e) {} }
+    db.collection("posts").onSnapshot((snap) => {
+      const s = {}; snap.docs.forEach((x) => { if (x.exists) s[x.id] = x.data(); });
+      state = s; conectado = true; note.hidden = true; render();
+    }, () => { note.hidden = false; note.textContent = "A conexão com o status caiu. Recarregue a página."; });
+  })();
+})();
+</script>
+
+</body></html>
